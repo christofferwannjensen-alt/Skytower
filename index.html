@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skytower – erhvervsbyggeri i verdensklasse i Skejby, Aarhus. Fleksible kontorlokaler med udsigt til by og landskab.">
+    <title>SKYTOWER – Erhvervsbyggeri i Skejby, Aarhus</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ============================================================
+         1. NAVIGATION (sticky)
+         ============================================================ -->
+    <header class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#hero" class="nav__logo">SKYTOWER</a>
+
+            <!-- Desktop-menu -->
+            <nav class="nav__links" id="navLinks">
+                <a href="#om" class="nav__link">Om</a>
+                <a href="#faciliteter" class="nav__link">Faciliteter</a>
+                <a href="#bygningen" class="nav__link">Bygningen</a>
+                <a href="#kontakt" class="nav__link nav__link--cta">Kontakt</a>
+            </nav>
+
+            <!-- Hamburger-knap (mobil) -->
+            <button class="nav__toggle" id="navToggle" aria-label="Åbn menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+         2. HERO
+         ============================================================ -->
+    <section class="hero" id="hero">
+        <!-- Hero-baggrundsbillede sættes i .hero__bg i styles.css
+             (fil: "Billede opdateret facade lidt fra afstand_page-0001.jpg") -->
+        <div class="hero__bg" id="heroBg"></div>
+        <div class="hero__overlay"></div>
+
+        <div class="hero__content">
+            <h1 class="hero__title">Skytower</h1>
+            <p class="hero__tagline">Erhvervsbyggeri i verdensklasse — midt i Aarhus</p>
+            <a href="#kontakt" class="btn btn--light">Kontakt os</a>
+        </div>
+
+        <a href="#om" class="hero__scroll" aria-label="Scroll ned">
+            <span></span>
+        </a>
+    </section>
+
+
+    <!-- ============================================================
+         3. OM BYGNINGEN
+         ============================================================ -->
+    <section class="section om" id="om">
+        <div class="container om__inner">
+            <div class="om__content reveal">
+                <div class="section__head">
+                    <span class="section__eyebrow">Om bygningen</span>
+                    <h2 class="section__title">Et vartegn i mødet mellem by og natur</h2>
+                </div>
+
+                <div class="om__text">
+                    <p>
+                        Ved overgangen mellem Aarhus' nordlige erhvervsområder og det åbne landskab
+                        omkring Egådalen rejser Skytower sig som et markant vartegn i mødet mellem
+                        by og natur. Bygningen er disponeret med en solid base, der optager terrænets
+                        fald, mens de overliggende volumener gradvist trapper ned mod nord — et samlet
+                        udtryk der forholder sig til både den nære skala og de store landskabelige
+                        sammenhænge.
+                    </p>
+                    <p>
+                        Mod øst åbner etagerne sig mod Aarhusbugten og byens silhuet. Mod vest strækker
+                        udsigten sig over det karakteristiske morænelandskab ved Egådalen. Facaden er
+                        klædt i bronzefarvede aluminiumselementer, der reagerer på himmel, lys og vejr —
+                        og giver bygningen et levende, varierende udtryk hen over dagen.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Billede: bronzefarvet facade tæt på -->
+            <div class="om__media reveal">
+                <img src="Billede af opdateret Facade tæt på_page-0001.jpg"
+                     alt="Skytowers bronzefarvede aluminiumsfacade set tæt på"
+                     loading="lazy">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         4. FACILITETER
+         ============================================================ -->
+    <section class="section faciliteter" id="faciliteter">
+        <div class="container">
+            <div class="section__head reveal">
+                <span class="section__eyebrow">Faciliteter</span>
+                <h2 class="section__title">Alt under ét tag</h2>
+            </div>
+
+            <div class="cards">
+
+                <!-- Kort 1 -->
+                <article class="card reveal">
+                    <div class="card__img">
+                        <img src="Lobby.jpg" alt="Lobby og ankomstområde i Skytower" loading="lazy">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Lobby &amp; ankomst</h3>
+                        <p class="card__text">En imponerende dobbelthøj lobby der sætter tonen fra første skridt.</p>
+                    </div>
+                </article>
+
+                <!-- Kort 2 -->
+                <article class="card reveal">
+                    <div class="card__img">
+                        <img src="Kantine 01 HQ.jpg" alt="Kantine og restaurant i Skytower" loading="lazy">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Kantine &amp; restaurant</h3>
+                        <p class="card__text">Professionelt cateringkøkken og moderne kantine til bygningens lejere.</p>
+                    </div>
+                </article>
+
+                <!-- Kort 3 -->
+                <article class="card reveal">
+                    <div class="card__img">
+                        <img src="Kontor 01.jpg" alt="Kontoretage med udsigt i Skytower" loading="lazy">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Kontoretager</h3>
+                        <p class="card__text">Fleksible kontorplanløsninger med udsigt til både by og landskab.</p>
+                    </div>
+                </article>
+
+                <!-- Kort 4 -->
+                <article class="card reveal">
+                    <div class="card__img">
+                        <img src="Mødelokale 01.jpg" alt="Mødelokale i Skytower" loading="lazy">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Mødelokaler &amp; mødecenter</h3>
+                        <p class="card__text">Fra intime møderum til store konferencecentre — alt under ét tag.</p>
+                    </div>
+                </article>
+
+                <!-- Kort 5 (midlertidigt billede – afventer dedikeret tagterrasse-foto) -->
+                <article class="card reveal">
+                    <div class="card__img">
+                        <img src="Kontor 01.jpg" alt="Tagterrasse på 19. etage i Skytower" loading="lazy">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Tagterrasse</h3>
+                        <p class="card__text">Eksklusiv tagterrasse på 19. etage med panoramaudsigt over Aarhus.</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         5. BYGNINGEN I TAL (animerede counters)
+         ============================================================ -->
+    <section class="section facts" id="bygningen">
+        <div class="container">
+            <div class="section__head reveal">
+                <span class="section__eyebrow section__eyebrow--light">Bygningen i tal</span>
+                <h2 class="section__title section__title--light">Skytower i overblik</h2>
+            </div>
+
+            <div class="facts__grid">
+                <!-- data-target = slutværdi, data-suffix = tekst efter tallet -->
+                <div class="fact reveal">
+                    <span class="fact__num" data-target="20">0</span>
+                    <span class="fact__label">Etager</span>
+                </div>
+                <div class="fact reveal">
+                    <span class="fact__num" data-target="22000" data-suffix="+">0</span>
+                    <span class="fact__label">m² (etape 1)</span>
+                </div>
+                <div class="fact reveal">
+                    <span class="fact__num" data-target="2300" data-suffix="+">0</span>
+                    <span class="fact__label">Arbejdspladser</span>
+                </div>
+                <div class="fact reveal">
+                    <span class="fact__num" data-target="2">0</span>
+                    <span class="fact__label">Etaper</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         6. BELIGGENHED
+         ============================================================ -->
+    <section class="section beliggenhed">
+        <div class="container beliggenhed__inner">
+            <div class="beliggenhed__text reveal">
+                <span class="section__eyebrow">Beliggenhed</span>
+                <h2 class="section__title">Et nyt landmark i Skejby</h2>
+                <p>
+                    Skytower er placeret i Skejby, Aarhus — ved motorvejsafkørsel og med direkte
+                    adgang til Aarhus midtby. Bygningen er synlig fra store dele af Aarhus og udgør
+                    et nyt landmark i byens nordlige erhvervskvarter.
+                </p>
+            </div>
+            <!-- Billede: facaden set lidt fra afstand -->
+            <div class="beliggenhed__media reveal">
+                <img src="Billede opdateret facade lidt fra afstand_page-0001.jpg"
+                     alt="Skytower set lidt fra afstand i Skejby" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         7. KONTAKT
+         ============================================================ -->
+    <section class="section kontakt" id="kontakt">
+        <div class="container kontakt__inner">
+            <div class="kontakt__intro reveal">
+                <span class="section__eyebrow">Kontakt</span>
+                <h2 class="section__title">Hør mere om Skytower</h2>
+                <p>
+                    Er du interesseret i at høre mere om Skytower? Udfyld formularen og vi vender
+                    tilbage hurtigst muligt.
+                </p>
+            </div>
+
+            <form class="form reveal" id="contactForm" novalidate>
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="navn">Navn</label>
+                        <input type="text" id="navn" name="navn" required autocomplete="name">
+                    </div>
+                    <div class="form__group">
+                        <label for="firma">Firma</label>
+                        <input type="text" id="firma" name="firma" autocomplete="organization">
+                    </div>
+                </div>
+
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="form__group">
+                        <label for="telefon">Telefon</label>
+                        <input type="tel" id="telefon" name="telefon" autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="form__group">
+                    <label for="besked">Besked</label>
+                    <textarea id="besked" name="besked" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--dark">Send</button>
+                <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span class="footer__logo">SKYTOWER</span>
+            <p class="footer__text">Skejby, Aarhus · Erhvervsbyggeri</p>
+            <p class="footer__copy">© <span id="year"></span> Skytower. Alle rettigheder forbeholdes.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
