@@ -231,46 +231,18 @@
          ============================================================ -->
     <section class="section kontakt" id="kontakt">
         <div class="container kontakt__inner">
-            <div class="kontakt__intro reveal">
+            <div class="kontakt__box reveal">
                 <span class="section__eyebrow">Kontakt</span>
                 <h2 class="section__title">Hør mere om Skytower</h2>
-                <p>
-                    Er du interesseret i at høre mere om Skytower? Udfyld formularen og vi vender
-                    tilbage hurtigst muligt.
+                <p class="kontakt__text">
+                    Er du interesseret i at leje lokaler i Skytower? Skriv til os direkte på mail —
+                    vi vender tilbage hurtigst muligt.
                 </p>
+                <a class="btn btn--dark btn--lg"
+                   href="mailto:kontakt@skytower-aarhus.dk?subject=Foresp%C3%B8rgsel%20-%20Skytower">
+                    Send en mail
+                </a>
             </div>
-
-            <form class="form reveal" id="contactForm" novalidate>
-                <div class="form__row">
-                    <div class="form__group">
-                        <label for="navn">Navn</label>
-                        <input type="text" id="navn" name="navn" required autocomplete="name">
-                    </div>
-                    <div class="form__group">
-                        <label for="firma">Firma</label>
-                        <input type="text" id="firma" name="firma" autocomplete="organization">
-                    </div>
-                </div>
-
-                <div class="form__row">
-                    <div class="form__group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required autocomplete="email">
-                    </div>
-                    <div class="form__group">
-                        <label for="telefon">Telefon</label>
-                        <input type="tel" id="telefon" name="telefon" autocomplete="tel">
-                    </div>
-                </div>
-
-                <div class="form__group">
-                    <label for="besked">Besked</label>
-                    <textarea id="besked" name="besked" rows="5" required></textarea>
-                </div>
-
-                <button type="submit" class="btn btn--dark">Send</button>
-                <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
-            </form>
         </div>
     </section>
 
