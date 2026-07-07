@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skytower-aarhus.dk/sitemap.xml
+Sitemap: https://www.skytower-aarhus.dk/sitemap.xml
