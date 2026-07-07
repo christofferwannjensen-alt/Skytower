@@ -33,6 +33,24 @@
     updateNav();
 
     /* ----------------------------------------------------------
+       2a. Ankernavigation uden hash i adressen
+       Uden dette bliver fx #galleri staaende i URL'en, og et
+       refresh hopper direkte derned i stedet for at starte fra
+       toppen. Vi scroller selv og holder adressen ren.
+       ---------------------------------------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            var target = document.querySelector(a.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+            history.replaceState(null, '', window.location.pathname);
+        });
+    });
+
+    /* ----------------------------------------------------------
        2b. Scrollspy — markér den aktive sektion i menuen
        ---------------------------------------------------------- */
     var spyLinks = {};
