@@ -153,9 +153,25 @@ h1, h2, h3, blockquote, p, figure { margin: 0; }
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 100;
-    transition: background 0.5s ease, box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease;
 }
+/* Baggrund + blur ligger paa et pseudo-element. Laa backdrop-filter
+   direkte paa .nav, ville den laase det fixed-positionerede
+   mobilmenu-overlay til topbarens hoejde i stedet for viewporten. */
+.nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(34, 30, 26, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.nav.scrolled::before { opacity: 1; }
 .nav__inner {
+    position: relative; /* over ::before-baggrunden */
     max-width: var(--maxw);
     margin: 0 auto;
     padding: 1.75rem var(--gutter);
@@ -165,9 +181,6 @@ h1, h2, h3, blockquote, p, figure { margin: 0; }
     transition: padding 0.5s ease;
 }
 .nav.scrolled {
-    background: rgba(34, 30, 26, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 var(--hairline-inv);
 }
 .nav.scrolled .nav__inner { padding-block: 1rem; }
@@ -247,14 +260,37 @@ h1, h2, h3, blockquote, p, figure { margin: 0; }
         z-index: 105;
         flex-direction: column;
         justify-content: center;
-        gap: 2.5rem;
-        background: rgba(34, 30, 26, 0.98);
+        align-items: center;
+        gap: 2.25rem;
+        background: rgba(28, 24, 20, 0.98);
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.45s ease, visibility 0.45s ease;
     }
     .nav__menu.open { opacity: 1; visibility: visible; }
-    .nav__link { font-size: 1.05rem; }
+    .nav__link {
+        font-size: 1.3rem;
+        letter-spacing: 0.16em;
+    }
+    .nav__link--cta {
+        margin-top: 0.75rem;
+        padding: 0.85rem 2.4rem;
+    }
+    /* Menupunkterne toner forskudt ind, naar menuen aabner */
+    .nav__menu a {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+    }
+    .nav__menu.open a { opacity: 1; transform: none; }
+    .nav__menu.open a:nth-child(1) { transition-delay: 0.08s; }
+    .nav__menu.open a:nth-child(2) { transition-delay: 0.15s; }
+    .nav__menu.open a:nth-child(3) { transition-delay: 0.22s; }
+    .nav__menu.open a:nth-child(4) { transition-delay: 0.29s; }
+    .nav__menu.open a:nth-child(5) { transition-delay: 0.36s; }
+    @media (prefers-reduced-motion: reduce) {
+        .nav__menu a { transition: none; transform: none; }
+    }
 }
 
 /* ---------- 6. Hero ---------- */
