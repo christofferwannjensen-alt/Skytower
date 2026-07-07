@@ -1,6 +1,6 @@
 # Skytower — præsentationswebsite
 
-Premium one-pager for erhvervsdomicilet Skytower i Egådalen, Aarhus.
+Premium one-pager for erhvervsdomicilet Skytower i Skejby, Aarhus.
 Bygget i vanilla HTML/CSS/JS — ingen build-step, ingen dependencies.
 
 ## Struktur
