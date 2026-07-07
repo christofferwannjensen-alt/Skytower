@@ -1,208 +1,301 @@
 /* ============================================================
-   SKYTOWER – script.js
-   Vanilla JS: navigation, scroll-reveal, parallax, counters,
-   billed-placeholders og kontaktformular.
+   SKYTOWER — script.js
+   Vanilla JS: nav-tilstand, mobilmenu, scroll-reveal,
+   hero-parallax, galleri-lightbox og kontaktformular.
    ============================================================ */
 
 (function () {
     'use strict';
 
-    /* ----------------------------------------------------------
-       1. STICKY NAV – skift style ved scroll
-       ---------------------------------------------------------- */
-    const nav = document.getElementById('nav');
-
-    function onScrollNav() {
-        // Tilføj .scrolled når brugeren har scrollet forbi 60px
-        if (window.scrollY > 60) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    }
-    window.addEventListener('scroll', onScrollNav, { passive: true });
-    onScrollNav();
-
+    var prefersReducedMotion =
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ----------------------------------------------------------
-       2. MOBIL-MENU (hamburger)
+       1. Hero-indtoning ved load
        ---------------------------------------------------------- */
-    const navToggle = document.getElementById('navToggle');
-    const navLinks  = document.getElementById('navLinks');
-
-    function closeMenu() {
-        navToggle.classList.remove('open');
-        navLinks.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
+    window.addEventListener('load', function () {
+        document.body.classList.add('loaded');
+    });
+    // Fallback hvis load-eventet allerede er fyret
+    if (document.readyState === 'complete') {
+        document.body.classList.add('loaded');
     }
 
-    navToggle.addEventListener('click', function () {
-        const isOpen = navToggle.classList.toggle('open');
-        navLinks.classList.toggle('open', isOpen);
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-    });
+    /* ----------------------------------------------------------
+       2. Navigation — solid baggrund efter scroll
+       ---------------------------------------------------------- */
+    var nav = document.getElementById('nav');
 
-    // Luk menuen når et link klikkes (mobil)
-    navLinks.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
-    });
-
+    function updateNav() {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
 
     /* ----------------------------------------------------------
-       3. BILLED-PLACEHOLDERS
-       Sætter background-image på elementer med data-img,
-       HVIS filen findes. Ellers beholdes gradient-fallback.
-       (Så siden ser pæn ud allerede før du tilføjer billeder.)
+       2b. Scrollspy — markér den aktive sektion i menuen
        ---------------------------------------------------------- */
-    document.querySelectorAll('[data-img]').forEach(function (el) {
-        const src = el.getAttribute('data-img');
-        if (!src) return;
-
-        const probe = new Image();
-        probe.onload = function () {
-            el.style.backgroundImage = "url('" + src + "')";
-        };
-        probe.src = src;   // findes filen ikke, fejler den lydløst → gradient bevares
+    var spyLinks = {};
+    document.querySelectorAll('.nav__link[href^="#"]').forEach(function (a) {
+        spyLinks[a.getAttribute('href').slice(1)] = a;
     });
 
-
-    /* ----------------------------------------------------------
-       4. SCROLL-REVEAL (Intersection Observer)
-       Tilføjer .is-visible til .reveal-elementer når de
-       kommer i view → fade/slide-in.
-       ---------------------------------------------------------- */
-    const revealEls = document.querySelectorAll('.reveal');
+    function setActive(id) {
+        Object.keys(spyLinks).forEach(function (key) {
+            var on = key === id;
+            spyLinks[key].classList.toggle('active', on);
+            if (on) {
+                spyLinks[key].setAttribute('aria-current', 'true');
+            } else {
+                spyLinks[key].removeAttribute('aria-current');
+            }
+        });
+    }
 
     if ('IntersectionObserver' in window) {
-        const revealObserver = new IntersectionObserver(function (entries, observer) {
+        // Sektionen, der krydser midten af viewporten, er den aktive
+        var spy = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);   // animér kun én gang
-                }
+                if (entry.isIntersecting) setActive(entry.target.id);
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -60px 0px'
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+        Object.keys(spyLinks).forEach(function (id) {
+            var section = document.getElementById(id);
+            if (section) spy.observe(section);
         });
 
-        revealEls.forEach(function (el) { revealObserver.observe(el); });
-    } else {
-        // Fallback for meget gamle browsere: vis alt
-        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+        // Ryd markeringen, når man er tilbage i hero
+        var heroSpy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) setActive('');
+            });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        heroSpy.observe(document.getElementById('hero'));
     }
-
 
     /* ----------------------------------------------------------
-       5. PARALLAX på hero-baggrund
-       Flytter baggrunden langsommere end scroll.
-       Bruger requestAnimationFrame for jævn ydeevne.
+       3. Mobilmenu
        ---------------------------------------------------------- */
-    const heroBg = document.getElementById('heroBg');
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let ticking = false;
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('navMenu');
 
-    function updateParallax() {
-        const offset = window.scrollY;
-        // Kør kun mens hero er i nærheden af viewporten
-        if (offset < window.innerHeight) {
-            heroBg.style.transform = 'translateY(' + offset * 0.4 + 'px)';
-        }
-        ticking = false;
+    function setMenu(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Luk menu' : 'Åbn menu');
+        menu.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
     }
 
-    if (heroBg && !prefersReduced) {
+    toggle.addEventListener('click', function () {
+        setMenu(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Luk menuen når et link vælges
+    menu.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setMenu(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (!menu.classList.contains('open')) return;
+
+        if (e.key === 'Escape') {
+            setMenu(false);
+            toggle.focus();
+            return;
+        }
+
+        // Fokusfælde: hold Tab inden for toggle-knappen og menupunkterne
+        if (e.key === 'Tab') {
+            var focusables = [toggle].concat(
+                Array.prototype.slice.call(menu.querySelectorAll('a'))
+            );
+            var first = focusables[0];
+            var last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    /* ----------------------------------------------------------
+       4. Scroll-reveal via IntersectionObserver
+       ---------------------------------------------------------- */
+    var revealEls = document.querySelectorAll('.reveal');
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealEls.forEach(function (el) { el.classList.add('in-view'); });
+    } else {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+        revealEls.forEach(function (el, i) {
+            // Let forskudt stagger inden for samme viewport-batch
+            el.style.setProperty('--d', (i % 3) * 0.12 + 's');
+            io.observe(el);
+        });
+    }
+
+    /* ----------------------------------------------------------
+       5. Hero-parallax — billedet glider langsommere end scroll
+       ---------------------------------------------------------- */
+    var heroMedia = document.getElementById('heroMedia');
+
+    if (heroMedia && !prefersReducedMotion) {
+        var ticking = false;
+
+        function parallax() {
+            var y = window.scrollY;
+            // Kun mens hero er i viewporten
+            if (y < window.innerHeight) {
+                heroMedia.style.transform = 'translateY(' + y * 0.22 + 'px)';
+            }
+            ticking = false;
+        }
+
         window.addEventListener('scroll', function () {
             if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
                 ticking = true;
+                requestAnimationFrame(parallax);
             }
         }, { passive: true });
     }
 
-
     /* ----------------------------------------------------------
-       6. ANIMEREDE COUNTERS ("Bygningen i tal")
-       Tæller op fra 0 til data-target når sektionen ses.
+       6. Galleri-lightbox med tastaturnavigation
        ---------------------------------------------------------- */
-    const counters = document.querySelectorAll('.fact__num');
+    var items = Array.prototype.slice.call(
+        document.querySelectorAll('.gallery__item')
+    );
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightboxImg');
+    var lbCaption = document.getElementById('lightboxCaption');
+    var lbClose = document.getElementById('lightboxClose');
+    var lbPrev = document.getElementById('lightboxPrev');
+    var lbNext = document.getElementById('lightboxNext');
+    var current = 0;
+    var lastFocus = null;
 
-    function animateCounter(el) {
-        const target   = parseInt(el.getAttribute('data-target'), 10) || 0;
-        const suffix    = el.getAttribute('data-suffix') || '';
-        const duration  = 2000;   // ms
-        const startTime = performance.now();
+    var lbCount = document.getElementById('lightboxCount');
 
-        function tick(now) {
-            const progress = Math.min((now - startTime) / duration, 1);
-            // easeOutCubic for et behageligt opbremsende forløb
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const value = Math.floor(eased * target);
+    function show(index) {
+        current = (index + items.length) % items.length;
+        var item = items[current];
+        lbImg.src = item.dataset.full;
+        lbImg.alt = item.querySelector('img').alt;
+        lbCaption.textContent = item.dataset.caption || '';
+        lbCount.textContent = (current + 1) + ' / ' + items.length;
 
-            el.textContent = value.toLocaleString('da-DK') + suffix;
+        // Forudindlæs nabobillederne, så bladring føles øjeblikkelig
+        [current - 1, current + 1].forEach(function (i) {
+            var neighbor = items[(i + items.length) % items.length];
+            var pre = new Image();
+            pre.src = neighbor.dataset.full;
+        });
+    }
 
-            if (progress < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                el.textContent = target.toLocaleString('da-DK') + suffix;
+    function openLightbox(index) {
+        lastFocus = document.activeElement;
+        show(index);
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lbClose.focus();
+    }
+
+    function closeLightbox() {
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+    }
+
+    items.forEach(function (item, i) {
+        item.addEventListener('click', function () { openLightbox(i); });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', function () { show(current - 1); });
+    lbNext.addEventListener('click', function () { show(current + 1); });
+
+    // Klik på den mørke baggrund lukker
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (lightbox.hidden) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+
+        // Simpel fokusfælde mellem lightboxens knapper
+        if (e.key === 'Tab') {
+            var focusables = [lbClose, lbPrev, lbNext];
+            var idx = focusables.indexOf(document.activeElement);
+            if (e.shiftKey && idx <= 0) {
+                e.preventDefault();
+                focusables[focusables.length - 1].focus();
+            } else if (!e.shiftKey && idx === focusables.length - 1) {
+                e.preventDefault();
+                focusables[0].focus();
             }
         }
-        requestAnimationFrame(tick);
-    }
-
-    if ('IntersectionObserver' in window && counters.length) {
-        const counterObserver = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        counters.forEach(function (el) { counterObserver.observe(el); });
-    } else {
-        // Fallback: vis slutværdier direkte
-        counters.forEach(function (el) {
-            const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-            el.textContent = target.toLocaleString('da-DK') + (el.getAttribute('data-suffix') || '');
-        });
-    }
-
+    });
 
     /* ----------------------------------------------------------
-       7. KONTAKTFORMULAR
-       Simpel klient-validering + bekræftelse.
-       (Ingen backend – tilslut din egen endpoint i submit-handler.)
+       7. Kopiér e-mail — fallback for brugere uden mailprogram
        ---------------------------------------------------------- */
-    const form   = document.getElementById('contactForm');
-    const status = document.getElementById('formStatus');
+    var copyBtn = document.getElementById('copyEmail');
+    var copyTimer = null;
 
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
+    copyBtn.addEventListener('click', function () {
+        var email = copyBtn.dataset.email;
 
-            // Browserens indbyggede validering (required, type=email)
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
+        function done() {
+            copyBtn.textContent = 'Kopieret';
+            copyBtn.classList.add('copied');
+            clearTimeout(copyTimer);
+            copyTimer = setTimeout(function () {
+                copyBtn.textContent = 'Kopiér adresse';
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        }
 
-            // --- Her kan du sende data til din backend, fx fetch('/api/kontakt', ...) ---
-            const navn = form.elements['navn'].value.trim();
+        // Ældre browsere og afviste clipboard-tilladelser:
+        // midlertidigt tekstfelt + execCommand
+        function legacyCopy() {
+            var tmp = document.createElement('textarea');
+            tmp.value = email;
+            tmp.setAttribute('readonly', '');
+            tmp.style.position = 'absolute';
+            tmp.style.left = '-9999px';
+            document.body.appendChild(tmp);
+            tmp.select();
+            document.execCommand('copy');
+            document.body.removeChild(tmp);
+            done();
+        }
 
-            status.textContent = 'Tak ' + navn + '! Vi har modtaget din besked og vender tilbage hurtigst muligt.';
-            form.reset();
-        });
-    }
-
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(done, legacyCopy);
+        } else {
+            legacyCopy();
+        }
+    });
 
     /* ----------------------------------------------------------
-       8. ÅRSTAL I FOOTER
+       8. Årstal i footer
        ---------------------------------------------------------- */
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
+    document.getElementById('year').textContent =
+        new Date().getFullYear();
 
-})();
+}());

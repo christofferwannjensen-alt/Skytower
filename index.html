@@ -3,258 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Skytower – erhvervsbyggeri i verdensklasse i Skejby, Aarhus. Fleksible kontorlokaler med udsigt til by og landskab.">
-    <title>SKYTOWER – Erhvervsbyggeri i Skejby, Aarhus</title>
+    <meta name="description" content="Skytower – erhvervsdomicil i Egådalen, hvor Aarhus' nordlige erhvervsområder møder det åbne landskab. En markant bebyggelse i mødet mellem by og landskab.">
+    <title>Skytower — Hvor byen møder landskabet</title>
 
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://aarhus-skytower.dk/">
+
+    <!-- Deling / Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Skytower">
+    <meta property="og:locale" content="da_DK">
+    <meta property="og:title" content="Skytower — Hvor byen møder landskabet">
+    <meta property="og:description" content="Erhvervsdomicil i Egådalen, hvor Aarhus' nordlige erhvervsområder møder det åbne landskab.">
+    <meta property="og:url" content="https://aarhus-skytower.dk/">
+    <meta property="og:image" content="https://aarhus-skytower.dk/assets/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Skytower — Hvor byen møder landskabet">
+    <meta name="twitter:description" content="Erhvervsdomicil i Egådalen, hvor Aarhus' nordlige erhvervsområder møder det åbne landskab.">
+    <meta name="twitter:image" content="https://aarhus-skytower.dk/assets/images/og-image.jpg">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <!-- Self-hostede fonte (GDPR-venligt, intet eksternt opslag) -->
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-300.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-normal-400.woff2" crossorigin>
+    <link rel="stylesheet" href="fonts.css">
+
+    <link rel="preload" as="image" imagesrcset="assets/images/facade-800.webp 800w, assets/images/facade-2000.webp 1054w" imagesizes="100vw" type="image/webp">
 
     <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Place",
+        "name": "Skytower",
+        "description": "Erhvervsdomicil i Egådalen, hvor Aarhus' nordlige erhvervsområder møder det åbne landskab omkring Egådalen.",
+        "url": "https://aarhus-skytower.dk/",
+        "image": "https://aarhus-skytower.dk/assets/images/og-image.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Aarhus",
+            "addressCountry": "DK"
+        }
+    }
+    </script>
 </head>
 <body>
 
-    <!-- ============================================================
-         1. NAVIGATION (sticky)
-         ============================================================ -->
+    <a href="#vision" class="skip-link">Spring til indhold</a>
+
+    <!-- ==================== NAVIGATION ==================== -->
     <header class="nav" id="nav">
         <div class="nav__inner">
-            <a href="#hero" class="nav__logo">SKYTOWER</a>
+            <a href="#hero" class="nav__logo" aria-label="Skytower – til toppen">SKYTOWER</a>
 
-            <!-- Desktop-menu -->
-            <nav class="nav__links" id="navLinks">
-                <a href="#om" class="nav__link">Om</a>
-                <a href="#faciliteter" class="nav__link">Faciliteter</a>
-                <a href="#bygningen" class="nav__link">Bygningen</a>
+            <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Åbn menu">
+                <span></span><span></span>
+            </button>
+
+            <nav class="nav__menu" id="navMenu" aria-label="Hovedmenu">
+                <a href="#vision" class="nav__link">Vision</a>
+                <a href="#rum" class="nav__link">Rum &amp; Faciliteter</a>
+                <a href="#beliggenhed" class="nav__link">Beliggenhed</a>
+                <a href="#galleri" class="nav__link">Galleri</a>
                 <a href="#kontakt" class="nav__link nav__link--cta">Kontakt</a>
             </nav>
-
-            <!-- Hamburger-knap (mobil) -->
-            <button class="nav__toggle" id="navToggle" aria-label="Åbn menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
         </div>
     </header>
 
+    <main>
 
-    <!-- ============================================================
-         2. HERO
-         ============================================================ -->
+    <!-- ==================== 1. HERO ==================== -->
     <section class="hero" id="hero">
-        <!-- Hero-baggrundsbillede sættes i .hero__bg i styles.css
-             (fil: "Billede opdateret facade lidt fra afstand_page-0001.jpg") -->
-        <div class="hero__bg" id="heroBg"></div>
-        <div class="hero__overlay"></div>
+        <div class="hero__media" id="heroMedia">
+            <picture>
+                <source type="image/webp" srcset="assets/images/facade-800.webp 800w, assets/images/facade-2000.webp 1054w" sizes="100vw">
+                <img
+                    src="assets/images/facade-2000.jpg"
+                    srcset="assets/images/facade-800.jpg 800w, assets/images/facade-2000.jpg 1054w"
+                    sizes="100vw"
+                    width="1054" height="1754"
+                    alt="Skytower set fra afstand i skumringslys – kontortårn med bronzefarvet facadebeklædning og oplyste etager"
+                    fetchpriority="high">
+            </picture>
+        </div>
+        <div class="hero__scrim" aria-hidden="true"></div>
 
-        <div class="hero__content">
-            <h1 class="hero__title">Skytower</h1>
-            <p class="hero__tagline">Erhvervsbyggeri i verdensklasse — midt i Aarhus</p>
-            <a href="#kontakt" class="btn btn--light">Kontakt os</a>
+        <div class="hero__content container">
+            <p class="hero__wordmark">SKYTOWER</p>
+            <h1 class="hero__title">Hvor byen møder<br>landskabet</h1>
+            <p class="hero__eyebrow">Erhvervsdomicil &middot; Egådalen, Aarhus</p>
         </div>
 
-        <a href="#om" class="hero__scroll" aria-label="Scroll ned">
-            <span></span>
+        <a href="#vision" class="hero__scroll" aria-label="Scroll ned til Vision">
+            <span class="hero__scroll-label">Scroll</span>
+            <span class="hero__scroll-line" aria-hidden="true"></span>
         </a>
     </section>
 
-
-    <!-- ============================================================
-         3. OM BYGNINGEN
-         ============================================================ -->
-    <section class="section om" id="om">
-        <div class="container om__inner">
-            <div class="om__content reveal">
-                <div class="section__head">
-                    <span class="section__eyebrow">Om bygningen</span>
-                    <h2 class="section__title">Et vartegn i mødet mellem by og natur</h2>
-                </div>
-
-                <div class="om__text">
-                    <p>
-                        Ved overgangen mellem Aarhus' nordlige erhvervsområder og det åbne landskab
-                        omkring Egådalen rejser Skytower sig som et markant vartegn i mødet mellem
-                        by og natur. Bygningen er disponeret med en solid base, der optager terrænets
-                        fald, mens de overliggende volumener gradvist trapper ned mod nord — et samlet
-                        udtryk der forholder sig til både den nære skala og de store landskabelige
-                        sammenhænge.
-                    </p>
-                    <p>
-                        Mod øst åbner etagerne sig mod Aarhusbugten og byens silhuet. Mod vest strækker
-                        udsigten sig over det karakteristiske morænelandskab ved Egådalen. Facaden er
-                        klædt i bronzefarvede aluminiumselementer, der reagerer på himmel, lys og vejr —
-                        og giver bygningen et levende, varierende udtryk hen over dagen.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Billede: bronzefarvet facade tæt på -->
-            <div class="om__media reveal">
-                <img src="Billede af opdateret Facade tæt på_page-0001.jpg"
-                     alt="Skytowers bronzefarvede aluminiumsfacade set tæt på"
-                     loading="lazy">
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================================================
-         4. FACILITETER
-         ============================================================ -->
-    <section class="section faciliteter" id="faciliteter">
+    <!-- ==================== 2. VISION ==================== -->
+    <section class="section vision" id="vision">
         <div class="container">
-            <div class="section__head reveal">
-                <span class="section__eyebrow">Faciliteter</span>
-                <h2 class="section__title">Alt under ét tag</h2>
+
+            <header class="section__head reveal">
+                <p class="eyebrow">01 &mdash; Vision</p>
+                <h2 class="section__title">I mødet mellem<br>by og landskab</h2>
+            </header>
+
+            <p class="vision__lead reveal">
+                Ved overgangen mellem Aarhus' nordlige erhvervsområder og det åbne
+                landskab omkring Egådalen rejser Skytower sig som en markant
+                bebyggelse i mødet mellem by og landskab.
+            </p>
+
+            <!-- Topografi -->
+            <div class="split">
+                <div class="split__text reveal">
+                    <h3 class="split__heading">Base og volumen</h3>
+                    <p>Projektet tager afsæt i områdets særlige topografi og synlighed.
+                    Bygningen er disponeret som en base, der optager terrænets fald,
+                    mens de overliggende volumener gradvist trapper ned mod nord.
+                    Herved skabes en samlet bebyggelse, der forholder sig til både den
+                    nære skala omkring ankomst- og opholdsarealerne og de store
+                    landskabelige sammenhænge, som omgiver stedet.</p>
+                </div>
+                <figure class="split__media reveal">
+                    <div class="frame">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/lobby-800.webp 800w, assets/images/lobby-1200.webp 1200w, assets/images/lobby-2000.webp 2000w" sizes="(max-width: 760px) 100vw, 50vw">
+                            <img
+                                src="assets/images/lobby-1200.jpg"
+                                srcset="assets/images/lobby-800.jpg 800w, assets/images/lobby-1200.jpg 1200w, assets/images/lobby-2000.jpg 2000w"
+                                sizes="(max-width: 760px) 100vw, 50vw"
+                                width="1200" height="805"
+                                alt="Dobbelthøjt lobbyrum med ovenlys, trætrappe og blå loungemøbler"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <figcaption>Ankomst og opholdsarealer</figcaption>
+                </figure>
             </div>
 
-            <div class="cards">
+            <!-- Facade + materialer -->
+            <div class="split split--flip">
+                <div class="split__text reveal">
+                    <h3 class="split__heading">Facade og materialitet</h3>
+                    <p>Arkitekturen er udviklet med fokus på proportionering og
+                    facadebearbejdning. Bygningens volumen opdeles gennem en lagdelt
+                    facadeopbygning, hvor vinduesfelter, horisontale bånd og lodrette
+                    facadeelementer skaber dybde og rytme. De horisontale bånd
+                    nedbryder højden og giver facaden en menneskelig skala, mens de
+                    lodrette elementer samler bebyggelsen og understreger dens
+                    vertikale karakter.</p>
+                    <p>Basen udføres i natursten, der forankrer bygningen i terrænet
+                    og giver bebyggelsen tyngde. Herover beklædes facaderne med
+                    bronzefarvede aluminiumselementer, hvis varme metalliske overflade
+                    reagerer på himmel, lys og vejr. Facaden ændrer karakter i løbet
+                    af dagen, hvor skygger og refleksioner fremhæver bygningens relief
+                    og dybde.</p>
+                </div>
+                <figure class="split__media reveal">
+                    <div class="frame">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/facade-detalje-800.webp 800w, assets/images/facade-detalje-2000.webp 1228w" sizes="(max-width: 760px) 100vw, 50vw">
+                            <img
+                                src="assets/images/facade-detalje-2000.jpg"
+                                srcset="assets/images/facade-detalje-800.jpg 800w, assets/images/facade-detalje-2000.jpg 1228w"
+                                sizes="(max-width: 760px) 100vw, 50vw"
+                                width="1228" height="1241"
+                                alt="Skytowers facade set tæt på – bronzefarvede aluminiumselementer, vinduesfelter og horisontale bånd"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <figcaption>Lagdelt facadeopbygning i bronzefarvet aluminium</figcaption>
+                </figure>
+            </div>
 
-                <!-- Kort 1 -->
-                <article class="card reveal">
-                    <div class="card__img">
-                        <img src="Lobby.jpg" alt="Lobby og ankomstområde i Skytower" loading="lazy">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Lobby &amp; ankomst</h3>
-                        <p class="card__text">En imponerende dobbelthøj lobby der sætter tonen fra første skridt.</p>
-                    </div>
-                </article>
+            <!-- Gårdrum -->
+            <div class="vision__narrow reveal">
+                <h3 class="split__heading">Gårdrummet</h3>
+                <p>Mellem bebyggelsens volumener etableres et fælles gårdrum, der
+                danner et grønt opholdsrum i projektets midte. Her skabes et beskyttet
+                miljø, som står i kontrast til de store infrastrukturelle rum og
+                landskabelige vidder, der omgiver området.</p>
+            </div>
 
-                <!-- Kort 2 -->
-                <article class="card reveal">
-                    <div class="card__img">
-                        <img src="Kantine 01 HQ.jpg" alt="Kantine og restaurant i Skytower" loading="lazy">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Kantine &amp; restaurant</h3>
-                        <p class="card__text">Professionelt cateringkøkken og moderne kantine til bygningens lejere.</p>
-                    </div>
-                </article>
+        </div>
 
-                <!-- Kort 3 -->
-                <article class="card reveal">
-                    <div class="card__img">
-                        <img src="Kontor 01.jpg" alt="Kontoretage med udsigt i Skytower" loading="lazy">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Kontoretager</h3>
-                        <p class="card__text">Fleksible kontorplanløsninger med udsigt til både by og landskab.</p>
-                    </div>
-                </article>
-
-                <!-- Kort 4 -->
-                <article class="card reveal">
-                    <div class="card__img">
-                        <img src="Mødelokale 01.jpg" alt="Mødelokale i Skytower" loading="lazy">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Mødelokaler &amp; mødecenter</h3>
-                        <p class="card__text">Fra intime møderum til store konferencecentre — alt under ét tag.</p>
-                    </div>
-                </article>
-
-                <!-- Kort 5 (midlertidigt billede – afventer dedikeret tagterrasse-foto) -->
-                <article class="card reveal">
-                    <div class="card__img">
-                        <img src="Kontor 01.jpg" alt="Tagterrasse på 19. etage i Skytower" loading="lazy">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Tagterrasse</h3>
-                        <p class="card__text">Eksklusiv tagterrasse på 19. etage med panoramaudsigt over Aarhus.</p>
-                    </div>
-                </article>
-
+        <!-- Afsluttende statement -->
+        <div class="statement reveal">
+            <div class="container">
+                <blockquote class="statement__quote">
+                    Skytower er formet af spændingsfeltet mellem by og landskab
+                    &mdash; en præcis bearbejdning af skala, materialitet og lys, der
+                    både indskriver sig i Aarhus' skyline og forankrer sig i stedets
+                    særlige topografi.
+                </blockquote>
             </div>
         </div>
     </section>
 
-
-    <!-- ============================================================
-         5. BYGNINGEN I TAL (animerede counters)
-         ============================================================ -->
-    <section class="section facts" id="bygningen">
+    <!-- ==================== 3. RUM & FACILITETER ==================== -->
+    <section class="section rooms" id="rum">
         <div class="container">
-            <div class="section__head reveal">
-                <span class="section__eyebrow section__eyebrow--light">Bygningen i tal</span>
-                <h2 class="section__title section__title--light">Skytower i overblik</h2>
+
+            <header class="section__head reveal">
+                <p class="eyebrow">02 &mdash; Rum &amp; Faciliteter</p>
+                <h2 class="section__title">Rum med udsigt<br>og karakter</h2>
+            </header>
+
+            <div class="rooms__grid">
+                <figure class="rooms__item rooms__item--wide reveal">
+                    <div class="frame">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/kantine-800.webp 800w, assets/images/kantine-1200.webp 1200w, assets/images/kantine-2000.webp 2000w" sizes="(max-width: 760px) 100vw, 60vw">
+                            <img
+                                src="assets/images/kantine-1200.jpg"
+                                srcset="assets/images/kantine-800.jpg 800w, assets/images/kantine-1200.jpg 1200w, assets/images/kantine-2000.jpg 2000w"
+                                sizes="(max-width: 760px) 100vw, 60vw"
+                                width="1200" height="808"
+                                alt="Kantine og spiseområde med trælofts-detalje og åbent køkken"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <figcaption>
+                        <span class="rooms__name">Kantine</span>
+                        <span class="rooms__desc">Fælles spiseområde med trælofts-detaljer og åbent køkken</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="rooms__item reveal">
+                    <div class="frame">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/kontor-800.webp 800w, assets/images/kontor-1200.webp 1200w, assets/images/kontor-2000.webp 2000w" sizes="(max-width: 760px) 100vw, 40vw">
+                            <img
+                                src="assets/images/kontor-1200.jpg"
+                                srcset="assets/images/kontor-800.jpg 800w, assets/images/kontor-1200.jpg 1200w, assets/images/kontor-2000.jpg 2000w"
+                                sizes="(max-width: 760px) 100vw, 40vw"
+                                width="1200" height="805"
+                                alt="Åbent kontorlandskab med gulv-til-loft vinduer og udsigt over landskabet"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <figcaption>
+                        <span class="rooms__name">Kontor</span>
+                        <span class="rooms__desc">Åbne kontorlandskaber med gulv-til-loft vinduer mod landskabet</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="rooms__item reveal">
+                    <div class="frame">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/moedelokale-800.webp 800w, assets/images/moedelokale-1200.webp 1200w, assets/images/moedelokale-2000.webp 2000w" sizes="(max-width: 760px) 100vw, 40vw">
+                            <img
+                                src="assets/images/moedelokale-1200.jpg"
+                                srcset="assets/images/moedelokale-800.jpg 800w, assets/images/moedelokale-1200.jpg 1200w, assets/images/moedelokale-2000.jpg 2000w"
+                                sizes="(max-width: 760px) 100vw, 40vw"
+                                width="1200" height="805"
+                                alt="Mødelokale med panoramavinduer og udsigt over det omkringliggende landskab"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <figcaption>
+                        <span class="rooms__name">Mødelokale</span>
+                        <span class="rooms__desc">Panoramavinduer med lange kig over det omkringliggende landskab</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="rooms__item rooms__item--wide reveal">
+                    <div class="frame">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/lobby-800.webp 800w, assets/images/lobby-1200.webp 1200w, assets/images/lobby-2000.webp 2000w" sizes="(max-width: 760px) 100vw, 60vw">
+                            <img
+                                src="assets/images/lobby-1200.jpg"
+                                srcset="assets/images/lobby-800.jpg 800w, assets/images/lobby-1200.jpg 1200w, assets/images/lobby-2000.jpg 2000w"
+                                sizes="(max-width: 760px) 100vw, 60vw"
+                                width="1200" height="805"
+                                alt="Lobby med dobbelthøjt rum, ovenlys, trætrappe og loungemøblering"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <figcaption>
+                        <span class="rooms__name">Lobby</span>
+                        <span class="rooms__desc">Dobbelthøjt ankomstrum med ovenlys og trætrappe</span>
+                    </figcaption>
+                </figure>
             </div>
 
-            <div class="facts__grid">
-                <!-- data-target = slutværdi, data-suffix = tekst efter tallet -->
-                <div class="fact reveal">
-                    <span class="fact__num" data-target="20">0</span>
-                    <span class="fact__label">Etager</span>
-                </div>
-                <div class="fact reveal">
-                    <span class="fact__num" data-target="22000" data-suffix="+">0</span>
-                    <span class="fact__label">m² (etape 1)</span>
-                </div>
-                <div class="fact reveal">
-                    <span class="fact__num" data-target="2300" data-suffix="+">0</span>
-                    <span class="fact__label">Arbejdspladser</span>
-                </div>
-                <div class="fact reveal">
-                    <span class="fact__num" data-target="2">0</span>
-                    <span class="fact__label">Etaper</span>
-                </div>
-            </div>
         </div>
     </section>
 
+    <!-- ==================== 4. BELIGGENHED ==================== -->
+    <section class="section location" id="beliggenhed">
+        <div class="container">
 
-    <!-- ============================================================
-         6. BELIGGENHED
-         ============================================================ -->
-    <section class="section beliggenhed">
-        <div class="container beliggenhed__inner">
-            <div class="beliggenhed__text reveal">
-                <span class="section__eyebrow">Beliggenhed</span>
-                <h2 class="section__title">Et nyt landmark i Skejby</h2>
-                <p>
-                    Skytower er placeret i Skejby, Aarhus — ved motorvejsafkørsel og med direkte
-                    adgang til Aarhus midtby. Bygningen er synlig fra store dele af Aarhus og udgør
-                    et nyt landmark i byens nordlige erhvervskvarter.
-                </p>
+            <header class="section__head reveal">
+                <p class="eyebrow eyebrow--bronze">03 &mdash; Beliggenhed</p>
+                <h2 class="section__title">Lange kig til landskab<br>og horisont</h2>
+            </header>
+
+            <p class="location__lead reveal">
+                Placeringen giver bygningen en særlig orientering mod omgivelserne
+                &mdash; ved overgangen mellem Aarhus' nordlige erhvervsområder og det
+                åbne landskab omkring Egådalen.
+            </p>
+
+            <div class="location__compass">
+                <div class="location__dir reveal">
+                    <p class="location__cardinal">Øst</p>
+                    <p class="location__text">Mod øst åbner etagerne sig mod
+                    Aarhusbugten og byens silhuet.</p>
+                </div>
+                <div class="location__divider" aria-hidden="true"></div>
+                <div class="location__dir reveal">
+                    <p class="location__cardinal">Vest</p>
+                    <p class="location__text">Mod vest strækker udsigten sig over det
+                    karakteristiske morænelandskab omkring Egådalen.</p>
+                </div>
             </div>
-            <!-- Billede: facaden set lidt fra afstand -->
-            <div class="beliggenhed__media reveal">
-                <img src="Billede opdateret facade lidt fra afstand_page-0001.jpg"
-                     alt="Skytower set lidt fra afstand i Skejby" loading="lazy">
-            </div>
+
+            <p class="location__outro reveal">
+                De lange kig til landskab og horisont er en væsentlig kvalitet i
+                projektet og bidrager til oplevelsen af bygningen som en del af en
+                større geografisk sammenhæng.
+            </p>
+
         </div>
     </section>
 
+    <!-- ==================== 5. GALLERI ==================== -->
+    <section class="section gallery" id="galleri">
+        <div class="container">
 
-    <!-- ============================================================
-         7. KONTAKT
-         ============================================================ -->
-    <section class="section kontakt" id="kontakt">
-        <div class="container kontakt__inner">
-            <div class="kontakt__box reveal">
-                <span class="section__eyebrow">Kontakt</span>
-                <h2 class="section__title">Hør mere om Skytower</h2>
-                <p class="kontakt__text">
-                    Er du interesseret i at leje lokaler i Skytower? Skriv til os direkte på mail —
-                    vi vender tilbage hurtigst muligt.
-                </p>
-                <a class="btn btn--dark btn--lg"
-                   href="mailto:kontakt@skytower-aarhus.dk?subject=Foresp%C3%B8rgsel%20-%20Skytower">
-                    Send en mail
-                </a>
+            <header class="section__head reveal">
+                <p class="eyebrow">04 &mdash; Galleri</p>
+                <h2 class="section__title">Bygningen i billeder</h2>
+            </header>
+
+            <div class="gallery__grid" id="galleryGrid">
+                <button class="gallery__item reveal" data-full="assets/images/facade-2000.jpg" data-caption="Skytower set fra afstand i skumringslys">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/facade-800.webp 800w, assets/images/facade-2000.webp 1054w" sizes="(max-width: 760px) 50vw, 33vw">
+                        <img src="assets/images/facade-800.jpg" srcset="assets/images/facade-800.jpg 800w, assets/images/facade-2000.jpg 1054w" sizes="(max-width: 760px) 50vw, 33vw" width="800" height="1331" alt="Skytower set fra afstand i skumringslys" loading="lazy">
+                    </picture>
+                </button>
+                <button class="gallery__item reveal" data-full="assets/images/lobby-2000.jpg" data-caption="Lobby med ovenlys og trætrappe">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/lobby-800.webp 800w, assets/images/lobby-1200.webp 1200w" sizes="(max-width: 760px) 50vw, 33vw">
+                        <img src="assets/images/lobby-800.jpg" srcset="assets/images/lobby-800.jpg 800w, assets/images/lobby-1200.jpg 1200w" sizes="(max-width: 760px) 50vw, 33vw" width="800" height="537" alt="Lobby med ovenlys og trætrappe" loading="lazy">
+                    </picture>
+                </button>
+                <button class="gallery__item reveal" data-full="assets/images/kantine-2000.jpg" data-caption="Kantine og spiseområde">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/kantine-800.webp 800w, assets/images/kantine-1200.webp 1200w" sizes="(max-width: 760px) 50vw, 33vw">
+                        <img src="assets/images/kantine-800.jpg" srcset="assets/images/kantine-800.jpg 800w, assets/images/kantine-1200.jpg 1200w" sizes="(max-width: 760px) 50vw, 33vw" width="800" height="538" alt="Kantine og spiseområde" loading="lazy">
+                    </picture>
+                </button>
+                <button class="gallery__item reveal" data-full="assets/images/kontor-2000.jpg" data-caption="Åbent kontorlandskab">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/kontor-800.webp 800w, assets/images/kontor-1200.webp 1200w" sizes="(max-width: 760px) 50vw, 33vw">
+                        <img src="assets/images/kontor-800.jpg" srcset="assets/images/kontor-800.jpg 800w, assets/images/kontor-1200.jpg 1200w" sizes="(max-width: 760px) 50vw, 33vw" width="800" height="537" alt="Åbent kontorlandskab" loading="lazy">
+                    </picture>
+                </button>
+                <button class="gallery__item reveal" data-full="assets/images/moedelokale-2000.jpg" data-caption="Mødelokale med panoramavinduer">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/moedelokale-800.webp 800w, assets/images/moedelokale-1200.webp 1200w" sizes="(max-width: 760px) 50vw, 33vw">
+                        <img src="assets/images/moedelokale-800.jpg" srcset="assets/images/moedelokale-800.jpg 800w, assets/images/moedelokale-1200.jpg 1200w" sizes="(max-width: 760px) 50vw, 33vw" width="800" height="537" alt="Mødelokale med panoramavinduer" loading="lazy">
+                    </picture>
+                </button>
+                <button class="gallery__item reveal" data-full="assets/images/facade-detalje-2000.jpg" data-caption="Facaden tæt på – bronzefarvet aluminium">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/facade-detalje-800.webp 800w, assets/images/facade-detalje-2000.webp 1228w" sizes="(max-width: 760px) 50vw, 33vw">
+                        <img src="assets/images/facade-detalje-800.jpg" srcset="assets/images/facade-detalje-800.jpg 800w, assets/images/facade-detalje-2000.jpg 1228w" sizes="(max-width: 760px) 50vw, 33vw" width="800" height="808" alt="Facaden tæt på – bronzefarvede aluminiumselementer" loading="lazy">
+                    </picture>
+                </button>
             </div>
+
         </div>
     </section>
 
+    <!-- Lightbox (skjult indtil aktivering) -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Billedvisning" hidden>
+        <button class="lightbox__close" id="lightboxClose" aria-label="Luk billedvisning">&times;</button>
+        <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Forrige billede">&larr;</button>
+        <figure class="lightbox__figure">
+            <img id="lightboxImg" src="" alt="">
+            <figcaption>
+                <span id="lightboxCaption"></span>
+                <span class="lightbox__count" id="lightboxCount" aria-hidden="true"></span>
+            </figcaption>
+        </figure>
+        <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Næste billede">&rarr;</button>
+    </div>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+    <!-- ==================== 6. KONTAKT ==================== -->
+    <section class="section contact" id="kontakt">
+        <div class="container contact__inner">
+
+            <header class="reveal">
+                <p class="eyebrow">05 &mdash; Kontakt</p>
+                <h2 class="section__title">Interesseret i<br>at høre mere?</h2>
+                <p class="contact__sub">Henvendelser vedrørende udlejning besvares
+                pr. e-mail.</p>
+            </header>
+
+            <div class="contact__action reveal">
+                <a class="contact__cta" href="mailto:kontakt@aarhus-skytower.dk">Skriv til os</a>
+                <div class="contact__email-row">
+                    <a class="contact__email" href="mailto:kontakt@aarhus-skytower.dk">kontakt@aarhus-skytower.dk</a>
+                    <button type="button" class="contact__copy" id="copyEmail" data-email="kontakt@aarhus-skytower.dk">Kopiér adresse</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ==================== 7. FOOTER ==================== -->
     <footer class="footer">
         <div class="container footer__inner">
-            <span class="footer__logo">SKYTOWER</span>
-            <p class="footer__text">Skejby, Aarhus · Erhvervsbyggeri</p>
-            <p class="footer__copy">© <span id="year"></span> Skytower. Alle rettigheder forbeholdes.</p>
+            <p class="footer__wordmark">SKYTOWER</p>
+            <nav class="footer__nav" aria-label="Sidefod">
+                <a href="#vision">Vision</a>
+                <a href="#rum">Rum &amp; Faciliteter</a>
+                <a href="#beliggenhed">Beliggenhed</a>
+                <a href="#galleri">Galleri</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+            <p class="footer__meta">Erhvervsdomicil &middot; Egådalen, Aarhus &middot; <a class="footer__mail" href="mailto:kontakt@aarhus-skytower.dk">kontakt@aarhus-skytower.dk</a> &middot; <span id="year"></span></p>
         </div>
     </footer>
 
