@@ -17,7 +17,7 @@ sitemap.xml         Sitemap for forsiden
 ```
 
 > Canonical-URL, Open Graph og sitemap antager domænet
-> **https://aarhus-skytower.dk** (afledt af kontakt-e-mailen).
+> **https://skytower-aarhus.dk** (afledt af kontakt-e-mailen).
 > Ret adresserne i `index.html`, `robots.txt` og `sitemap.xml`,
 > hvis sitet skal ligge på et andet domæne.
 
@@ -37,5 +37,5 @@ npx serve .
 
 ## Kontakt
 
-Kontaktsektionen og footeren linker til `mailto:kontakt@aarhus-skytower.dk`
+Kontaktsektionen og footeren linker til `mailto:kontakt@skytower-aarhus.dk`
 — et klik åbner brugerens mailprogram med adressen udfyldt.
